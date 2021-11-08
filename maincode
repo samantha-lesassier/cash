@@ -1,0 +1,48 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]) {
+        double quart = .25;
+        double dime = .10;
+        double nickel = .05;
+        double penny = .01;
+        int coins_used = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Change owed: ");
+        Double change_owed = scan.nextDouble();
+
+        while (change_owed < 0) {
+            System.out.println("Please enter a non-negative number");
+            change_owed = scan.nextDouble();
+        }
+
+        change_owed = 0 - change_owed;
+
+        while ((quart + change_owed) <= 0) {
+            change_owed = change_owed + quart;
+            change_owed = Math.round(change_owed * 100.0) / 100.0;
+            coins_used += 1;
+        }
+
+        while ((dime + change_owed) <= 0) {
+            change_owed = change_owed + dime;
+            change_owed = Math.round(change_owed * 100.0) / 100.0;
+            coins_used += 1;
+        }
+
+        while ((nickel + change_owed) <= 0) {
+            change_owed = change_owed + nickel;
+            change_owed = Math.round(change_owed * 100.0) / 100.0;
+            coins_used += 1;
+        }
+
+        while ((penny + change_owed) <= 0) {
+            change_owed = change_owed + penny;
+            change_owed = Math.round(change_owed * 100.0) / 100.0;
+            coins_used += 1;
+        }
+
+        System.out.print(coins_used);
+    }
+}
